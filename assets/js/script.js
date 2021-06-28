@@ -1,10 +1,13 @@
 var startBtn = document.querySelector( '#start' );
 var questionboxEl = document.querySelector( "#questionArea" );
 var nextBtn = document.querySelector( "#next" );
-var ulTag = document.querySelector( "ul" );
+var ulTagEl = document.querySelector( "ul" );
 
+var choicesEl = document.getElementsByTagName( "li" );
+var timerEl = document.querySelector( ".time" );
 
 var questionNumber = 0;
+var score = 0;
 var quiz = [
     // questions : [
     //     "question 1 text", "question 2 text", "question 3 text"
@@ -39,15 +42,23 @@ var quiz = [
     },
 ]
 
-
+countDown();
    
 if( startBtn ) {
     startBtn.addEventListener("click", startQuiz );
 }
 
-if( nextBtn ) {
-    nextBtn.addEventListener( "click", promptQuestion );
+// if( nextBtn ) {
+//     nextBtn.addEventListener( "click", promptQuestion );
+// }
+
+
+for (var i = 0; i < choicesEl.length; i++) {
+    choicesEl[i].addEventListener("click", function ( event ) {
+        getScore( event );
+    });
 }
+
 
 function startQuiz() {
     promptQuestion();
@@ -68,12 +79,9 @@ function promptQuestion() {
 }
 
 function listAnswers() {
-    // var main = document.querySelector( ".card" );
-    // var ulTag = document.createElement( "ul" );
-    // main.appendChild( ulTag );
     for( var i = 0; i < quiz[questionNumber].allAnswers.length; i++ ) {
         var listTag = document.createElement( "li" );
-        ulTag.appendChild( listTag );
+        ulTagEl.appendChild( listTag );
         listTag.textContent = quiz[questionNumber].allAnswers[i];
     }
 }
@@ -84,14 +92,41 @@ function reset() {
 }
 
 function clearMulChoice() {
-    // var ultag = document.querySelector( "ul" );
-    // if( ultag ) {
-    //     ultag.remove();
-    // }
-
-    if( ulTag ) {
-        while( ulTag.firstChild ) {
-            ulTag.removeChild( ulTag.firstChild );
+    if( ulTagEl ) {
+        while( ulTagEl.firstChild ) {
+            ulTagEl.removeChild( ulTagEl.firstChild );
         } 
     }
+}
+
+function getScore( event ) {
+    var element = event.target;
+    if( element.matches( "li" ) ) {
+        if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
+            score++;
+        }
+        else {
+            // time--;
+        }
+    }
+}
+
+
+function countDown() {
+    var timeLeft = 10;
+    var timeInterval = setInterval( function() {
+        if( timeLeft > 1 ) {
+            timerEl.textContent = timeLeft + ' seconds remaining';
+            timeLeft--;
+        }
+        else if( timeLeft === 1 ) {
+            timerEl.textContent = timeLeft + ' second remaining';
+            timeLeft--;
+        }
+        else {
+            timerEl.textContent = '';
+            clearInterval( timeInterval );
+            displayMessage();
+        }
+    }, 1000 );
 }
