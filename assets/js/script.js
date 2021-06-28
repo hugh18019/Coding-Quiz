@@ -1,7 +1,7 @@
 var startBtn = document.querySelector( '#start' );
 var questionboxEl = document.querySelector( "#questionArea" );
 var nextBtn = document.querySelector( "#next" );
-// var questionsUL = document.querySelector( "#questionList" );
+var ulTag = document.querySelector( "ul" );
 
 
 var questionNumber = 0;
@@ -68,9 +68,9 @@ function promptQuestion() {
 }
 
 function listAnswers() {
-    var main = document.querySelector( ".card" );
-    var ulTag = document.createElement( "ul" );
-    main.appendChild( ulTag );
+    // var main = document.querySelector( ".card" );
+    // var ulTag = document.createElement( "ul" );
+    // main.appendChild( ulTag );
     for( var i = 0; i < quiz[questionNumber].allAnswers.length; i++ ) {
         var listTag = document.createElement( "li" );
         ulTag.appendChild( listTag );
@@ -84,9 +84,14 @@ function reset() {
 }
 
 function clearMulChoice() {
-    var ultag = document.querySelector( "ul" );
-    if( ultag ) {
-        ultag.remove();
+    // var ultag = document.querySelector( "ul" );
+    // if( ultag ) {
+    //     ultag.remove();
+    // }
+
+    if( ulTag ) {
+        while( ulTag.firstChild ) {
+            ulTag.removeChild( ulTag.firstChild );
+        } 
     }
-    
 }
