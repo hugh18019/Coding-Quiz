@@ -1,0 +1,14 @@
+header {
+  text-align: center;
+}
+
+header h1 {
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
