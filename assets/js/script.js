@@ -93,18 +93,18 @@ function listAnswers() {
     }
 }
 
-// function reset() {
-//     startBtn.innerHTML = "Start Quiz";
-//     questionNumber = 0;
-// }
+function reset() {
+    startBtn.innerHTML = "Start Quiz";
+    questionNumber = 0;
+}
 
-// function clearMulChoice() {
-//     if( ulTagEl ) {
-//         while( ulTagEl.firstChild ) {
-//             ulTagEl.removeChild( ulTagEl.firstChild );
-//         } 
-//     }
-// }
+function clearMulChoice() {
+    if( ulTagEl ) {
+        while( ulTagEl.firstChild ) {
+            ulTagEl.removeChild( ulTagEl.firstChild );
+        } 
+    }
+}
 
 // When the user clicks on a option button, checks to see if it is the correct answer
 // If it is, then increases the score. If not, time depletion is accelerated.
