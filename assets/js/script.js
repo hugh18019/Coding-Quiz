@@ -6,6 +6,7 @@ var ulTagEl = document.querySelector( "ul" );
 var choicesEl = document.getElementsByTagName( "li" );
 var timerEl = document.querySelector( ".time" );
 
+var timeLeft = 20;
 var questionNumber = 0;
 var score = 0;
 var quiz = [
@@ -17,27 +18,27 @@ var quiz = [
     // ],  
     {
         question : "question 1 text",
-        correctAnswer : "correctAnswer 1 text",
+        correctAnswer : "answer 1",
         allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
     },
     {
         question : "question 2 text",
-        correctAnswer : "correctAnswer 2 text",
+        correctAnswer : "answer 2",
         allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
     },
     {
         question : "question 3 text",
-        correctAnswer : "correctAnswer 3 text",
+        correctAnswer : "answer 3",
         allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
     },
     {
         question : "question 4 text",
-        correctAnswer : "correctAnswer 4 text",
+        correctAnswer : "answer 4",
         allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
     },
     {
         question : "question 5 text",
-        correctAnswer : "correctAnswer 5 text",
+        correctAnswer : "answer 3",
         allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
     },
 ]
@@ -53,11 +54,14 @@ if( startBtn ) {
 // }
 
 
-for (var i = 0; i < choicesEl.length; i++) {
+function initializeBtns() {
+    for (var i = 0; i < choicesEl.length; i++) {
     choicesEl[i].addEventListener("click", function ( event ) {
         getScore( event );
     });
 }
+}
+
 
 
 function startQuiz() {
@@ -74,7 +78,10 @@ function promptQuestion() {
     clearMulChoice();
     questionboxEl.textContent = quiz[questionNumber].question;
     listAnswers();
-    questionNumber++;
+    initializeBtns();
+
+
+    // questionNumber++;
 
 }
 
@@ -86,34 +93,47 @@ function listAnswers() {
     }
 }
 
-function reset() {
-    startBtn.innerHTML = "Start Quiz";
-    questionNumber = 0;
-}
+// function reset() {
+//     startBtn.innerHTML = "Start Quiz";
+//     questionNumber = 0;
+// }
 
-function clearMulChoice() {
-    if( ulTagEl ) {
-        while( ulTagEl.firstChild ) {
-            ulTagEl.removeChild( ulTagEl.firstChild );
-        } 
-    }
-}
+// function clearMulChoice() {
+//     if( ulTagEl ) {
+//         while( ulTagEl.firstChild ) {
+//             ulTagEl.removeChild( ulTagEl.firstChild );
+//         } 
+//     }
+// }
 
-function getScore( event ) {
-    var element = event.target;
-    if( element.matches( "li" ) ) {
-        if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
-            score++;
-        }
-        else {
-            // time--;
-        }
-    }
-}
+// function getScore( event ) {
+
+//     console.log( "Currently at question: " + questionNumber );
+//     console.log( "Correct answer is: " + quiz[questionNumber].correctAnswer );
+
+//     var element = event.target;
+//     console.log( element );
+//     if( element.matches( "li" ) ) {
+//         if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
+//             score++;
+//             console.log( score );
+//         }
+//         else {
+//             timeLeft--;
+//         }
+//     }
+//     questionNumber++;
+//     if( questionNumber < quiz.length && timeLeft >= 0) {
+//         promptQuestion();
+//     }
+//     else {
+//         //go to the result page
+//     }
+    
+// }
 
 
 function countDown() {
-    var timeLeft = 10;
     var timeInterval = setInterval( function() {
         if( timeLeft > 1 ) {
             timerEl.textContent = timeLeft + ' seconds remaining';
