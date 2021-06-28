@@ -133,7 +133,9 @@ function getScore( event ) {
         promptQuestion();
     }
     else {
+        storeResult();
         //go to the result page
+        goToResult();
     }
     
 }
@@ -155,4 +157,15 @@ function countDown() {
             displayMessage();
         }
     }, 1000 );
+}
+
+
+function storeResult() {
+    localStorage.setItem( "scoreKey", score );
+}
+
+
+function goToResult() {
+    document.location.href="result.html";
+    return false;
 }
