@@ -106,31 +106,37 @@ function listAnswers() {
 //     }
 // }
 
-// function getScore( event ) {
+// When the user clicks on a option button, checks to see if it is the correct answer
+// If it is, then increases the score. If not, time depletion is accelerated.
+// After the check is complete, the question is done so questionNumber is incremented 
+// and the quiz moves to the next question unless there are no more questions left or 
+// the timer reaches 0.
+// If the quiz ends, then go to the result page.
+function getScore( event ) {
 
-//     console.log( "Currently at question: " + questionNumber );
-//     console.log( "Correct answer is: " + quiz[questionNumber].correctAnswer );
+    console.log( "Currently at question: " + questionNumber );
+    console.log( "Correct answer is: " + quiz[questionNumber].correctAnswer );
 
-//     var element = event.target;
-//     console.log( element );
-//     if( element.matches( "li" ) ) {
-//         if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
-//             score++;
-//             console.log( score );
-//         }
-//         else {
-//             timeLeft--;
-//         }
-//     }
-//     questionNumber++;
-//     if( questionNumber < quiz.length && timeLeft >= 0) {
-//         promptQuestion();
-//     }
-//     else {
-//         //go to the result page
-//     }
+    var element = event.target;
+    console.log( element );
+    if( element.matches( "li" ) ) {
+        if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
+            score++;
+            console.log( score );
+        }
+        else {
+            timeLeft--;
+        }
+    }
+    questionNumber++;
+    if( questionNumber < quiz.length && timeLeft >= 0) {
+        promptQuestion();
+    }
+    else {
+        //go to the result page
+    }
     
-// }
+}
 
 
 function countDown() {
