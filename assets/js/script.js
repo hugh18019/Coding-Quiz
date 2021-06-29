@@ -167,6 +167,8 @@ function goToResultPage() {
 // For the result page
 var submitBtn = document.getElementById( "submit" );
 var inputFieldEl = document.getElementById( "inputField" );
+var resultBodyEl = document.getElementById( "resultBody" );
+
 
 submitBtn.addEventListener("click", storeInitials );
 
@@ -176,6 +178,28 @@ function storeInitials( event ) {
     localStorage.setItem( "initials", initials );
     inputFieldEl.textContent = '';
 
-    var temp = localStorage.getItem( "initials" );
-    console.log(temp);
+    // var displayResult = localStorage.getItem( "displayResult" );
+    localStorage.setItem( "displayResult", true );
+
+    renderInitials();   
+
+    
 }
+
+function renderInitials() {
+    var displayResult = localStorage.getItem( "displayResult" );
+    if( displayResult != null && displayResult ) {
+        var temp = localStorage.getItem( "initials" );
+        // console.log(temp);
+        var h2El = document.createElement( "h2" );
+        resultBodyEl.append( h2El );
+        h2El.textContent = temp;
+    }
+}
+
+
+function init() {
+    renderInitials();
+}
+
+init();
