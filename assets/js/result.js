@@ -2,6 +2,7 @@
 var submitBtn = document.getElementById( "submit" );
 var inputFieldEl = document.getElementById( "inputField" );
 var resultBodyEl = document.getElementById( "resultBody" );
+var mainEl = document.querySelector( ".box" );
 var formEl = document.getElementById( "form" );
 var goBackBtn = document.getElementById( "goBack" );
 var clearBtn = document.getElementById( "clear" );
@@ -54,7 +55,7 @@ function renderResult() {
         
         for( var i = 0; i < users.initials.length; i++ ) {
             var h3El = document.createElement( "h3" );
-            resultBodyEl.append( h3El );
+            mainEl.append( h3El );
             if( users.initials[i] && users.scores[i] ) {
                 h3El.textContent = "Name: " + users.initials[i] + " Score: " + users.scores[i];
             }

@@ -6,7 +6,7 @@ header h1 {
   text-align: center;
 }
 
-.card {
+.box {
   display: flex;
   flex-direction: column;
   justify-content: center;
