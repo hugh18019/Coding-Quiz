@@ -43,7 +43,15 @@ var quiz = [
     },
 ]
 
-countDown();
+
+var users = {
+    scores : [],
+    initials : []
+};
+
+
+
+
    
 if( startBtn ) {
     startBtn.addEventListener("click", startQuiz );
@@ -61,6 +69,7 @@ function initializeBtns() {
 
 
 function startQuiz() {
+    countDown();
     promptQuestion();
     startBtn.innerHTML = "Next Problem";
 }
@@ -154,7 +163,9 @@ function countDown() {
 
 
 function storeScore() {
-    localStorage.setItem( "scoreKey", score );
+    // localStorage.setItem( "scoreKey", score );
+    users.scores.push( score );
+    localStorage.setItem( "users", JSON.stringify(users) );
 }
 
 
@@ -165,52 +176,92 @@ function goToResultPage() {
 
 
 // For the result page
-var submitBtn = document.getElementById( "submit" );
-var inputFieldEl = document.getElementById( "inputField" );
-var resultBodyEl = document.getElementById( "resultBody" );
-var formEl = document.getElementById( "form" );
-var goBackBtn = document.getElementById( "goBack" );
+// var submitBtn = document.getElementById( "submit" );
+// var inputFieldEl = document.getElementById( "inputField" );
+// var resultBodyEl = document.getElementById( "resultBody" );
+// var formEl = document.getElementById( "form" );
+// var goBackBtn = document.getElementById( "goBack" );
 
-submitBtn.addEventListener("click", storeInitials );
-goBackBtn.addEventListener("click", returnToQuiz );
+// if( submitBtn ) {
+//     submitBtn.addEventListener("click", storeInitials );
+// }
 
-function storeInitials( event ) {
-    event.preventDefault();
-    var initials = inputFieldEl.value;
-    localStorage.setItem( "initials", initials );
-    inputFieldEl.textContent = '';
+// if( goBackBtn ) {
+//     goBackBtn.addEventListener("click", returnToQuiz );
+// }
 
-    // var displayResult = localStorage.getItem( "displayResult" );
-    localStorage.setItem( "displayResult", true );
 
-    renderResult(); 
-    hideForm();  
+// function storeInitial( event ) {
+//     event.preventDefault();
+
+//     var initial = inputFieldEl.value;
+//     // localStorage.setItem( "initials", initials );
+//     inputFieldEl.textContent = '';
+
+//     var users = localStorage.getItem( "users" );
+//     if( users ) {
+//         users.initials.push( initial );
+//     }
     
-}
+    
+//     localStorage.setItem( "users", JSON.stringify(users) );
+//     console.log( users );
 
-function renderResult() {
-    var displayResult = localStorage.getItem( "displayResult" );
-    if( displayResult != null && displayResult ) {
-        var initials = localStorage.getItem( "initials" );
-        var score = localStorage.getItem( "scoreKey" );
-        var h3El = document.createElement( "h3" );
-        resultBodyEl.append( h3El );
-        h3El.textContent = "Name: " + initials + " Score: " + score;
-    }
-}
+//     // var displayResult = localStorage.getItem( "displayResult" );
+//     localStorage.setItem( "displayResult", true );
+
+//     renderResult(); 
+//     hideForm();  
+    
+// }
+
+// function renderResult() {
+//     var displayResult = localStorage.getItem( "displayResult" );
+//     if( displayResult != null && displayResult ) {
+
+//         // var initials = localStorage.getItem( "initials" );
+//         // var score = localStorage.getItem( "scoreKey" );
+
+//         var users = localStorage.getItem( "users" );
+        
+
+//         var h3El = document.createElement( "h3" );
+//         if( resultBodyEl ) {
+//             resultBodyEl.append( h3El );
+//         }
+        
+//         if( users ) {
+//         //     h3El.textContent = "Name: " + users[ users.length - 1 ].initials.value + 
+//         // " Score: " + users[ users.length - 1 ].points.value;
+//             if( users.initials.length != 0 ) {
+//                 h3El.textContent = "Name: " + users.initials[ users.initials.length - 1 ];
+//             }
+//             if( users.score.length != 0 ) {
+//                 h3El.textContent += "Score: " + users.scores[ users.scores.length - 1 ];
+//             }
+            
+//         }
+        
+//     }
+// }
 
 
-function init() {
-    renderResult();
-}
+// function init() {
+//     renderResult();
+// }
 
-init();
+// init();
 
-function hideForm() {
-    formEl.style.display = "none";
-}
+// function hideForm() {
+//     formEl.style.display = "none";
+// }
 
-function returnToQuiz() {
-    document.location.href = "index.html";
-    return false;
-}
+// function clearLocalStorage() {
+
+// }
+
+// function returnToQuiz() {
+//     document.location.href = "index.html";
+//     return false;
+// }
+
