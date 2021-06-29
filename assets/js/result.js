@@ -47,20 +47,23 @@ function renderResult() {
 
         var users = JSON.parse( localStorage.getItem( "users" ) );
         
-        
-        var h3El = document.createElement( "h3" );
-        if( resultBodyEl ) {
+        for( var i = 0; i < users.initials.length; i++ ) {
+            var h3El = document.createElement( "h3" );
             resultBodyEl.append( h3El );
+            if( users.initials[i] && users.scores[i] ) {
+                h3El.textContent = "Name: " + users.initials[i] + " Score: " + users.scores[i];
+            }
         }
         
-        if( users ) {
-            if( users.initials ) {
-                h3El.textContent = "Name: " + users.initials[ users.initials.length - 1 ];
-            }
-            if( users.scores ) {
-                h3El.textContent += "Score: " + users.scores[ users.scores.length - 1 ];
-            }
-        }
+        
+        // if( users ) {
+        //     if( users.initials ) {
+        //         h3El.textContent = "Name: " + users.initials[ users.initials.length - 1 ];
+        //     }
+        //     if( users.scores ) {
+        //         h3El.textContent += "Score: " + users.scores[ users.scores.length - 1 ];
+        //     }
+        // }
         
     }
 }

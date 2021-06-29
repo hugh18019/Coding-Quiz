@@ -66,9 +66,12 @@ function initializeBtns() {
 }
 }
 
-
+// function storeUsersObj() {
+//     localStorage.setItem( "users", users );
+// }
 
 function startQuiz() {
+    // storeUsersObj();
     countDown();
     promptQuestion();
     startBtn.innerHTML = "Next Problem";
@@ -114,9 +117,6 @@ function clearMulChoice() {
 // the timer reaches 0.
 // If the quiz ends, then go to the result page.
 function getScore( event ) {
-
-    console.log( "Currently at question: " + questionNumber );
-    console.log( "Correct answer is: " + quiz[questionNumber].correctAnswer );
 
     var element = event.target;
     console.log( element );
@@ -164,8 +164,24 @@ function countDown() {
 
 function storeScore() {
     // localStorage.setItem( "scoreKey", score );
-    users.scores.push( score );
-    localStorage.setItem( "users", JSON.stringify(users) );
+
+    
+    var usersLocalStorage = JSON.parse( localStorage.getItem( "users" ) );
+    // This is for doing the quiz after the first time
+    // add the new score to the existing users object in local storage
+    // so that all attemps can be printed out in result.html
+    if( usersLocalStorage ) {
+        usersLocalStorage.scores.push( score );
+        localStorage.setItem( "users", JSON.stringify(usersLocalStorage) );
+    }
+    // This is for doing the quiz for the first time
+    // There is no local storage of the users object
+    // Put the score in users and store it in local storage for future updates
+    else {
+        users.scores.push( score );
+        localStorage.setItem( "users", JSON.stringify(users) );
+    }
+    
 }
 
 
