@@ -49,10 +49,6 @@ if( startBtn ) {
     startBtn.addEventListener("click", startQuiz );
 }
 
-// if( nextBtn ) {
-//     nextBtn.addEventListener( "click", promptQuestion );
-// }
-
 
 function initializeBtns() {
     for (var i = 0; i < choicesEl.length; i++) {
@@ -69,10 +65,6 @@ function startQuiz() {
     startBtn.innerHTML = "Next Problem";
 }
 
-// function goToQuizPage() {
-//     document.location.href="quiz.html";
-//     return false;
-// }
 
 function promptQuestion() {
     clearMulChoice();
@@ -133,9 +125,9 @@ function getScore( event ) {
         promptQuestion();
     }
     else {
-        storeResult();
+        storeScore();
         //go to the result page
-        goToResult();
+        goToResultPage();
     }
     
 }
@@ -143,29 +135,34 @@ function getScore( event ) {
 
 function countDown() {
     var timeInterval = setInterval( function() {
-        if( timeLeft > 1 ) {
-            timerEl.textContent = timeLeft + ' seconds remaining';
-            timeLeft--;
-        }
-        else if( timeLeft === 1 ) {
-            timerEl.textContent = timeLeft + ' second remaining';
-            timeLeft--;
-        }
-        else {
-            timerEl.textContent = '';
-            clearInterval( timeInterval );
-            displayMessage();
+        if( timerEl ) {
+            if( timeLeft > 1 ) {
+                timerEl.textContent = timeLeft + ' seconds remaining';
+                timeLeft--;
+            }
+            else if( timeLeft === 1 ) {
+                timerEl.textContent = timeLeft + ' second remaining';
+                timeLeft--;
+            }
+            else {
+                timerEl.textContent = '';
+                clearInterval( timeInterval );
+            }
         }
     }, 1000 );
 }
 
 
-function storeResult() {
+function storeScore() {
     localStorage.setItem( "scoreKey", score );
 }
 
 
-function goToResult() {
+function goToResultPage() {
     document.location.href="result.html";
     return false;
 }
+
+
+// For the result page
+
