@@ -168,7 +168,7 @@ function goToResultPage() {
 var submitBtn = document.getElementById( "submit" );
 var inputFieldEl = document.getElementById( "inputField" );
 var resultBodyEl = document.getElementById( "resultBody" );
-
+var formEl = document.getElementById( "form" );
 
 submitBtn.addEventListener("click", storeInitials );
 
@@ -181,8 +181,8 @@ function storeInitials( event ) {
     // var displayResult = localStorage.getItem( "displayResult" );
     localStorage.setItem( "displayResult", true );
 
-    renderInitials();   
-
+    renderInitials(); 
+    hideForm();  
     
 }
 
@@ -203,3 +203,8 @@ function init() {
 }
 
 init();
+
+
+function hideForm() {
+    formEl.style.display = "none";
+}
