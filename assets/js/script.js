@@ -165,4 +165,17 @@ function goToResultPage() {
 
 
 // For the result page
+var submitBtn = document.getElementById( "submit" );
+var inputFieldEl = document.getElementById( "inputField" );
 
+submitBtn.addEventListener("click", storeInitials );
+
+function storeInitials( event ) {
+    event.preventDefault();
+    var initials = inputFieldEl.value;
+    localStorage.setItem( "initials", initials );
+    inputFieldEl.textContent = '';
+
+    var temp = localStorage.getItem( "initials" );
+    console.log(temp);
+}
