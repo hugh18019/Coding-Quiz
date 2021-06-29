@@ -98,4 +98,5 @@ function clearResults() {
     for ( var each of h3Tags ) {
         each.remove();
     }
+    localStorage.clear();
 }
