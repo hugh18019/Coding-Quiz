@@ -4,6 +4,7 @@ var inputFieldEl = document.getElementById( "inputField" );
 var resultBodyEl = document.getElementById( "resultBody" );
 var formEl = document.getElementById( "form" );
 var goBackBtn = document.getElementById( "goBack" );
+var clearBtn = document.getElementById( "clear" );
 
 if( submitBtn ) {
     submitBtn.addEventListener("click", storeInitial );
@@ -11,6 +12,10 @@ if( submitBtn ) {
 
 if( goBackBtn ) {
     goBackBtn.addEventListener("click", returnToQuiz );
+}
+
+if( clearBtn ) {
+    clearBtn.addEventListener( "click", clearResults );
 }
 
 
@@ -86,4 +91,11 @@ function clearLocalStorage() {
 function returnToQuiz() {
     document.location.href = "index.html";
     return false;
+}
+
+function clearResults() {
+    var h3Tags = document.querySelectorAll( "h3" );
+    for ( var each of h3Tags ) {
+        each.remove();
+    }
 }
