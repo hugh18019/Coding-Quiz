@@ -169,8 +169,10 @@ var submitBtn = document.getElementById( "submit" );
 var inputFieldEl = document.getElementById( "inputField" );
 var resultBodyEl = document.getElementById( "resultBody" );
 var formEl = document.getElementById( "form" );
+var goBackBtn = document.getElementById( "goBack" );
 
 submitBtn.addEventListener("click", storeInitials );
+goBackBtn.addEventListener("click", returnToQuiz );
 
 function storeInitials( event ) {
     event.preventDefault();
@@ -181,30 +183,34 @@ function storeInitials( event ) {
     // var displayResult = localStorage.getItem( "displayResult" );
     localStorage.setItem( "displayResult", true );
 
-    renderInitials(); 
+    renderResult(); 
     hideForm();  
     
 }
 
-function renderInitials() {
+function renderResult() {
     var displayResult = localStorage.getItem( "displayResult" );
     if( displayResult != null && displayResult ) {
-        var temp = localStorage.getItem( "initials" );
-        // console.log(temp);
-        var h2El = document.createElement( "h2" );
-        resultBodyEl.append( h2El );
-        h2El.textContent = temp;
+        var initials = localStorage.getItem( "initials" );
+        var score = localStorage.getItem( "scoreKey" );
+        var h3El = document.createElement( "h3" );
+        resultBodyEl.append( h3El );
+        h3El.textContent = "Name: " + initials + " Score: " + score;
     }
 }
 
 
 function init() {
-    renderInitials();
+    renderResult();
 }
 
 init();
 
-
 function hideForm() {
     formEl.style.display = "none";
+}
+
+function returnToQuiz() {
+    document.location.href = "index.html";
+    return false;
 }
