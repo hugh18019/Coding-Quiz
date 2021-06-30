@@ -1,4 +1,4 @@
-var startBtn = document.querySelector( '#start' );
+var startBtn = document.querySelector( '#startBtn' );
 var questionboxEl = document.querySelector( "#questionArea" );
 var nextBtn = document.querySelector( "#next" );
 var ulTagEl = document.querySelector( "ul" );
@@ -50,13 +50,14 @@ var users = {
 };
 
 
-
-
    
 if( startBtn ) {
     startBtn.addEventListener("click", startQuiz );
 }
 
+function hideStartBtn() {
+    startBtn.style.display = "none";
+}
 
 function initializeBtns() {
     for (var i = 0; i < choicesEl.length; i++) {
@@ -66,15 +67,11 @@ function initializeBtns() {
 }
 }
 
-// function storeUsersObj() {
-//     localStorage.setItem( "users", users );
-// }
 
 function startQuiz() {
-    // storeUsersObj();
+    hideStartBtn();
     countDown();
     promptQuestion();
-    startBtn.innerHTML = "Next Problem";
 }
 
 

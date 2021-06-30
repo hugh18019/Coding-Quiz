@@ -22,17 +22,18 @@ if( clearBtn ) {
 
 function storeInitial( event ) {
     event.preventDefault();
-
+    //hide the placeholder text
     var initial = inputFieldEl.value;
-    // localStorage.setItem( "initials", initials );
     inputFieldEl.textContent = '';
+    
+    showClearBtn();
+    showGoBackBtn();
 
+    //store the initials from the user in local storage
     var users = JSON.parse( localStorage.getItem( "users" ) );
     if( users ) {
         users.initials.push( initial );
     }
-    
-    
     localStorage.setItem( "users", JSON.stringify(users) );
     console.log( users );
 
@@ -85,8 +86,20 @@ function hideForm() {
     formEl.style.display = "none";
 }
 
-function clearLocalStorage() {
+function hideGoBackBtn() {
+    goBackBtn.style.display = "none";
+}
 
+function hideClearBtn() {
+    clearBtn.style.display = "none";
+}
+
+function showGoBackBtn() {
+    goBackBtn.style.display = "block";
+}
+
+function showClearBtn() {
+    clearBtn.style.display = "block";
 }
 
 function returnToQuiz() {
@@ -101,3 +114,10 @@ function clearResults() {
     }
     localStorage.clear();
 }
+
+function init() {
+    hideGoBackBtn();
+    hideClearBtn();
+}
+
+init();
