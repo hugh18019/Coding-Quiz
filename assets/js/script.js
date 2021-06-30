@@ -18,29 +18,29 @@ var quiz = [
     //     "answer 1 text", "answer 2 text", "answer 3 text"
     // ],  
     {
-        question : "question 1 text",
-        correctAnswer : "answer 1",
-        allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
+        question : "Where is the correct place to insert a Javascript?",
+        correctAnswer : "Both the <head> and <body> section",
+        allAnswers : [ "The <body> section", "The <head> section", "Both the <head> and <body> section", "The <footer> section" ]
     },
     {
-        question : "question 2 text",
-        correctAnswer : "answer 2",
-        allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
+        question : "What is the correct syntax for referring to an external script called 'xxx.js'? ",
+        correctAnswer : "<script src='xxx.js'>",
+        allAnswers : [ "<script name='xxx.js'", "<script src='xxx.js'>", "<script href='xxx.js'" ]
     },
     {
-        question : "question 3 text",
-        correctAnswer : "answer 3",
-        allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
+        question : "The external Javascript file must contain the <script> tag.",
+        correctAnswer : "False",
+        allAnswers : [ "True", "False" ]
     },
     {
-        question : "question 4 text",
-        correctAnswer : "answer 4",
-        allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
+        question : "How do you create a function in Javascript?",
+        correctAnswer : "function myFunction()",
+        allAnswers : [ "var carName", "myFunction()", "function myFunction()", "alert('Hello World')" ]
     },
     {
-        question : "question 5 text",
-        correctAnswer : "answer 3",
-        allAnswers : [ "answer 1", "answer 2", "answer 3", "answer 4" ]
+        question : "Inside which HTML element do we put the Javascript?",
+        correctAnswer : "<script>",
+        allAnswers : [ "var carName", "<script>", "if( i == 5 )", "myFunction()" ]
     },
 ]
 
@@ -126,7 +126,7 @@ function getScore( event ) {
     var element = event.target;
     console.log( element );
     if( element.matches( "li" ) ) {
-        if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
+        if( element.textContent == quiz[questionNumber].correctAnswer ) {
             score++;
             console.log( score );
             var feedBackEl = document.querySelector(".feedbackArea" );
