@@ -1,16 +1,28 @@
+/* Centers the header */
 header {
   text-align: center;
 }
-
+/* Centers the h1 header inside header */
 header h1 {
   text-align: center;
 }
-
+/* 
+  Makes the container for each list that represents each answer choice a flexbox
+  and puts each button on a separate line
+*/
 #buttons {
   display: flex;
   flex-direction: column;
 }
 
+/* Adds a margin of 5px to each list
+   Makes each list float to the left
+   Deletes the bullet points in front of each list
+   Centers the text within each list
+   Sets the background color of each list
+   Adds a margin of 30px to the right of each list
+   Makes each list 150px wide
+   Sets the line height for each list */
 #buttons li {
   margin-bottom: 5px;
   float: left;
@@ -22,18 +34,14 @@ header h1 {
   line-height: 60px;
 }
 
-#buttons li a {
-  text-decoration: none;
-  color: #ffffff;
-  display: block;
-}
-
-#buttons li a:hover {
+/* Changes the text and background colors for each list when the mouse hovers over it */
+#buttons li:hover {
   text-decoration: none;
   color: #000000;
   background-color: #33b5e5;
 }
 
+/* Centers the start button */
 #start {
   display: flex;
   justify-content: center;
@@ -41,6 +49,8 @@ header h1 {
 }
 
 /* For the result page */
+
+/* Configures the container for the form element */
 .box {
   display: flex;
   flex-direction: column;
@@ -54,6 +64,7 @@ header h1 {
   background-color: #f0ead6;
 }
 
+/* Configures the input field of the form element */
 input {
   width: 80%;
   padding: 12px 20px;
@@ -62,20 +73,9 @@ input {
   font-size: 18px;
 }
 
-input:focus {
-  outline: none;
-}
-
+/* Sets the container for the clear and goBack buttons to be a flexbox
+   and sets its flex-direction to row so those two buttons appear on the same line */
 #navBtns {
   display: flex;
   flex-direction: row;
-}
-
-.goBack {
-  display: inline;
-  margin-left: auto;
-}
-
-.clear {
-  display: inline;
 }

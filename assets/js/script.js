@@ -11,12 +11,6 @@ var timeLeft = 20;
 var questionNumber = 0;
 var score = 0;
 var quiz = [
-    // questions : [
-    //     "question 1 text", "question 2 text", "question 3 text"
-    // ],
-    // answers : [
-    //     "answer 1 text", "answer 2 text", "answer 3 text"
-    // ],  
     {
         question : "Where is the correct place to insert a Javascript?",
         correctAnswer : "Both the <head> and <body> section",
