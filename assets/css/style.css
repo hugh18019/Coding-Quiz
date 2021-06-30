@@ -6,13 +6,6 @@ header h1 {
   text-align: center;
 }
 
-/* .box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
 #buttons {
   display: flex;
   flex-direction: column;
@@ -23,7 +16,7 @@ header h1 {
   float: left;
   list-style: none;
   text-align: center;
-  background-color: blue;
+  background-color: #333333;
   margin-right: 30px;
   width: 150px;
   line-height: 60px;

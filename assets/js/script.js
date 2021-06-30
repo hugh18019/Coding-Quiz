@@ -116,6 +116,7 @@ function listAnswers() {
     for( var i = 0; i < quiz[questionNumber].allAnswers.length; i++ ) {
         var listTag = document.createElement( "li" );
         ulTagEl.appendChild( listTag );
+        listTag.setAttribute( "style", " color:white;" );
         listTag.textContent = quiz[questionNumber].allAnswers[i];
     }
 }
