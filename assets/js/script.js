@@ -2,6 +2,7 @@ var startBtn = document.querySelector( '#startBtn' );
 var questionboxEl = document.querySelector( "#questionArea" );
 var nextBtn = document.querySelector( "#next" );
 var ulTagEl = document.querySelector( "ul" );
+var boxEl = document.querySelector( ".box" );
 
 var choicesEl = document.getElementsByTagName( "li" );
 var timerEl = document.querySelector( ".time" );
@@ -61,14 +62,21 @@ function hideStartBtn() {
 
 function initializeBtns() {
     for (var i = 0; i < choicesEl.length; i++) {
-    choicesEl[i].addEventListener("click", function ( event ) {
-        getScore( event );
-    });
-}
+        choicesEl[i].addEventListener("click", function ( event ) {
+            getScore( event );
+        });
+    }
 }
 
+function createFeedbackArea() {
+    var pTag = document.createElement( "p" );
+    pTag.className = "feedbackArea";
+    boxEl.appendChild( pTag );
+    pTag.textContent = "";
+}
 
 function startQuiz() {
+    createFeedbackArea();
     hideStartBtn();
     countDown();
     promptQuestion();
@@ -121,9 +129,13 @@ function getScore( event ) {
         if( element.innerHTML === quiz[questionNumber].correctAnswer ) {
             score++;
             console.log( score );
+            var feedBackEl = document.querySelector(".feedbackArea" );
+            feedBackEl.textContent = "Correct!";
         }
         else {
             timeLeft--;
+            var feedBackEl = document.querySelector(".feedbackArea" );
+            feedBackEl.textContent = "Wrong!";
         }
     }
     questionNumber++;
@@ -153,6 +165,9 @@ function countDown() {
             else {
                 timerEl.textContent = '';
                 clearInterval( timeInterval );
+
+                storeScore();
+                goToResultPage();
             }
         }
     }, 1000 );
