@@ -38,7 +38,7 @@ function storeInitial( event ) {
     console.log( users );
 
     // var displayResult = localStorage.getItem( "displayResult" );
-    localStorage.setItem( "displayResult", true );
+    // localStorage.setItem( "displayResult", true );
 
     renderResult(); 
     hideForm();  
@@ -46,20 +46,20 @@ function storeInitial( event ) {
 }
 
 function renderResult() {
-    var displayResult = localStorage.getItem( "displayResult" );
-    if( displayResult != null && displayResult ) {
+    // var displayResult = localStorage.getItem( "displayResult" );
+    // if( displayResult != null && displayResult ) {
 
         // var initials = localStorage.getItem( "initials" );
         // var score = localStorage.getItem( "scoreKey" );
 
         var users = JSON.parse( localStorage.getItem( "users" ) );
-        
+        console.log( users );
         for( var i = 0; i < users.initials.length; i++ ) {
             var h3El = document.createElement( "h3" );
             mainEl.append( h3El );
-            if( users.initials[i] && users.scores[i] ) {
+            // if( users.initials[i] && users.scores[i] ) {
                 h3El.textContent = "Name: " + users.initials[i] + " Score: " + users.scores[i];
-            }
+            // }
         }
         
         
@@ -72,7 +72,7 @@ function renderResult() {
         //     }
         // }
         
-    }
+    
 }
 
 

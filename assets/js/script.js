@@ -60,6 +60,8 @@ function hideStartBtn() {
     startBtn.style.display = "none";
 }
 
+// Adds an event listener to each choice
+// When a choice is clicked, the getScore() function is called to determine whether the choice is correct
 function initializeBtns() {
     for (var i = 0; i < choicesEl.length; i++) {
         choicesEl[i].addEventListener("click", function ( event ) {
@@ -68,6 +70,7 @@ function initializeBtns() {
     }
 }
 
+// Creates a p tag for displaying the feedback for each choice the user clicks on
 function createFeedbackArea() {
     var pTag = document.createElement( "p" );
     pTag.className = "feedbackArea";
@@ -75,6 +78,11 @@ function createFeedbackArea() {
     pTag.textContent = "";
 }
 
+// Starts the quiz. 
+// First calls createFeedBackArea() to create space for display feedback for each choice
+// Then calls hideStartBtn() to hide the startBtn 
+// Then calls countDown() to start the countdown timer
+// Then calls promptQuestion() to display the first question and its multiple answer choices.
 function startQuiz() {
     createFeedbackArea();
     hideStartBtn();
@@ -82,18 +90,28 @@ function startQuiz() {
     promptQuestion();
 }
 
-
+// Displays the question
+// First clears out the previous question from the display area
+// Then retrieves the appropriate question from the quiz object
+// Then calls listAnswers() to create each answer choice as a list
+// Then converts those lists into clickable buttons
 function promptQuestion() {
     clearMulChoice();
     questionboxEl.textContent = quiz[questionNumber].question;
     listAnswers();
     initializeBtns();
-
-
-    // questionNumber++;
-
 }
 
+// Clears out the previous question from the display area for questions
+function clearMulChoice() {
+    if( ulTagEl ) {
+        while( ulTagEl.firstChild ) {
+            ulTagEl.removeChild( ulTagEl.firstChild );
+        } 
+    }
+}
+
+// For each question, converts each possible answer of it into a list item
 function listAnswers() {
     for( var i = 0; i < quiz[questionNumber].allAnswers.length; i++ ) {
         var listTag = document.createElement( "li" );
@@ -107,13 +125,7 @@ function reset() {
     questionNumber = 0;
 }
 
-function clearMulChoice() {
-    if( ulTagEl ) {
-        while( ulTagEl.firstChild ) {
-            ulTagEl.removeChild( ulTagEl.firstChild );
-        } 
-    }
-}
+
 
 // When the user clicks on a option button, checks to see if it is the correct answer
 // If it is, then increases the score. If not, time depletion is accelerated.
@@ -122,7 +134,6 @@ function clearMulChoice() {
 // the timer reaches 0.
 // If the quiz ends, then go to the result page.
 function getScore( event ) {
-
     var element = event.target;
     console.log( element );
     if( element.matches( "li" ) ) {
@@ -150,7 +161,11 @@ function getScore( event ) {
     
 }
 
-
+// The countDown timer 
+// For each passing 1000 ms, the time left is decremented by one
+// The time left reaches 0, the timerInterval is stopped from decrementing further and 
+// storeScore() is called to store the current score and then calls goToResultPage() to 
+// go to result.html
 function countDown() {
     var timeInterval = setInterval( function() {
         if( timerEl ) {
@@ -165,7 +180,6 @@ function countDown() {
             else {
                 timerEl.textContent = '';
                 clearInterval( timeInterval );
-
                 storeScore();
                 goToResultPage();
             }
@@ -173,11 +187,8 @@ function countDown() {
     }, 1000 );
 }
 
-
+// Stores the current score into local storage
 function storeScore() {
-    // localStorage.setItem( "scoreKey", score );
-
-    
     var usersLocalStorage = JSON.parse( localStorage.getItem( "users" ) );
     // This is for doing the quiz after the first time
     // add the new score to the existing users object in local storage
@@ -196,100 +207,11 @@ function storeScore() {
     
 }
 
-
+// Goes to the result.html to display the score
 function goToResultPage() {
     document.location.href="result.html";
     return false;
 }
 
 
-// For the result page
-// var submitBtn = document.getElementById( "submit" );
-// var inputFieldEl = document.getElementById( "inputField" );
-// var resultBodyEl = document.getElementById( "resultBody" );
-// var formEl = document.getElementById( "form" );
-// var goBackBtn = document.getElementById( "goBack" );
-
-// if( submitBtn ) {
-//     submitBtn.addEventListener("click", storeInitials );
-// }
-
-// if( goBackBtn ) {
-//     goBackBtn.addEventListener("click", returnToQuiz );
-// }
-
-
-// function storeInitial( event ) {
-//     event.preventDefault();
-
-//     var initial = inputFieldEl.value;
-//     // localStorage.setItem( "initials", initials );
-//     inputFieldEl.textContent = '';
-
-//     var users = localStorage.getItem( "users" );
-//     if( users ) {
-//         users.initials.push( initial );
-//     }
-    
-    
-//     localStorage.setItem( "users", JSON.stringify(users) );
-//     console.log( users );
-
-//     // var displayResult = localStorage.getItem( "displayResult" );
-//     localStorage.setItem( "displayResult", true );
-
-//     renderResult(); 
-//     hideForm();  
-    
-// }
-
-// function renderResult() {
-//     var displayResult = localStorage.getItem( "displayResult" );
-//     if( displayResult != null && displayResult ) {
-
-//         // var initials = localStorage.getItem( "initials" );
-//         // var score = localStorage.getItem( "scoreKey" );
-
-//         var users = localStorage.getItem( "users" );
-        
-
-//         var h3El = document.createElement( "h3" );
-//         if( resultBodyEl ) {
-//             resultBodyEl.append( h3El );
-//         }
-        
-//         if( users ) {
-//         //     h3El.textContent = "Name: " + users[ users.length - 1 ].initials.value + 
-//         // " Score: " + users[ users.length - 1 ].points.value;
-//             if( users.initials.length != 0 ) {
-//                 h3El.textContent = "Name: " + users.initials[ users.initials.length - 1 ];
-//             }
-//             if( users.score.length != 0 ) {
-//                 h3El.textContent += "Score: " + users.scores[ users.scores.length - 1 ];
-//             }
-            
-//         }
-        
-//     }
-// }
-
-
-// function init() {
-//     renderResult();
-// }
-
-// init();
-
-// function hideForm() {
-//     formEl.style.display = "none";
-// }
-
-// function clearLocalStorage() {
-
-// }
-
-// function returnToQuiz() {
-//     document.location.href = "index.html";
-//     return false;
-// }
 
